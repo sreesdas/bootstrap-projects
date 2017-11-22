@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ONGC EWC</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="bower_components/morris.js/morris.css">
+
+  <style>
+  
+  .success-text {
+	font-size : 30px;
+	color: #4CAF50;
+  }
+  .failed-text {
+	font-size : 28px;
+	color: #FFC107;
+  }
+  
+  </style>
+  
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>EWC</b> Tripura Asset</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="index.html">
+            <i class="fa fa-home"></i> <span>Home</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Kits & Liveries
+        <!--small>Annual Gift</small -->
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">EWC</li>
+      </ol>
+    </section>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title">Please verify your data before submitting!</h4>
+			</div>
+			
+			<div class="modal-body">
+			<center>
+				<div id="loader" hidden>
+					<img src="resources/loading.gif" width="150" height="99" />
+				</div>
+				<div id="details">
+					<p id="_blood">Blood Group : </p>
+					<p id="_dungaree">Blood Group : </p>
+					<p id="_cotton">Blood Group : </p>
+					<p id="_shoe">Blood Group : </p>
+				</div>
+				<div id="success" hidden>
+					<img src="resources/success.gif" width="200" height="150" />
+					<div class="success-text">Success</div>
+				</div>
+				<div id="failed" hidden>
+					<img src="resources/warning.png" width="120" height="90" />
+					<div class="failed-text">Something went wrong!</div>
+					<p>Please contact the administrator</p>
+				</div>
+			</center>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" id="close-btn" class="btn btn-default" data-dismiss="modal">Close</button>
+			  <button type="button" id="submit-btn" class="btn btn-primary" >Submit</button>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+    <!-- Main content -->
+    <section class="content">
+      <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Registration Form</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form id="myForm" class="form-horizontal">
+              <div class="box-body">
+
+				<div class="form-group" id="form_cpf" >
+                  <label for="inputCpf" class="col-sm-2 control-label">CPF Number</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control" value="1" id="inputCpf" name="cpf" placeholder="CPF Number">
+                  </div>
+                </div>
+				<div class="form-group" id="form_name" >
+				
+                  <label for="inputName" class="col-sm-2 control-label">Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" disabled>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label class="col-sm-2 control-label">Blood Group</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" name="blood" id="blood" >
+						<option>A+</option>
+						<option>A-</option>
+						<option>B+</option>
+						<option>B-</option>
+						<option>AB+</option>
+						<option>AB-</option>
+						<option>O+</option>
+						<option>O-</option>
+					</select>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <label class="col-sm-2 control-label">Dungaree Size</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" name="dungaree" id="dungaree" >
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+						<option>XL</option>
+						<option>XXL</option>
+					</select>
+                  </div>
+				  <label class="col-sm-2"> <a href="#">Size chart</a> </label>
+                </div>
+				<div class="form-group">
+                  <label class="col-sm-2 control-label">Cotton Overall</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" name="cotton" id="cotton" >
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+						<option>XL</option>
+						<option>XXL</option>
+					</select>
+                  </div>
+				  <label class="col-sm-2"> <a href="#">Size chart</a> </label>
+                </div>
+				<div class="form-group" id="form_name" >
+                  <label for="inputName" class="col-sm-2 control-label">Safety Shoe Size</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" name="shoe" id="shoe" >
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+					</select>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <!--button id="submit-btn" type="button" class="btn btn-primary pull-left" >Register</button-->
+				<button id="register-btn" type="button" class="btn btn-primary pull-left" data-target="#myModal">Register</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+      </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 0.1 beta
+    </div>
+    <strong>Copyright &copy; 2017 <a href="https://adminlte.io">Infocom Services</a>.</strong>
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Morris.js charts -->
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<script>
+	
+
+	$("#inputCpf").blur(function(){
+		
+		var url = 'php/get_cpf.php?cpf=' + $("#inputCpf").val();
+		$.get( url , function( data ) {
+		  $('#inputName').val(data);
+		});
+		
+	});
+	
+	$('#submit-btn').click( function() {
+		
+		$("#loader").show();
+		$("#details").hide();
+		$(".modal-title").text('Saving your data...');
+		
+		$.post("php/submit.php", 
+		{
+			cpf : $('#inputCpf').val(),
+			dungaree : $('#dungaree').val(),
+			cotton : $('#cotton').val(),
+			blood : $('#blood').val(),
+			shoe : $('#shoe').val()
+		},
+		function(data) {
+			console.log(data);
+			setTimeout( function(){
+				$("#loader").hide();
+				$('#submit-btn').hide();
+				$('#close-btn').text('Back');
+				
+				if(data == "success"){
+					$('#success').show();
+				}else{
+					$('#failed').show();
+				}	
+				
+			}, 1000)
+		});
+	})
+	
+	
+	$('#register-btn').click(function(){
+		
+		$("#details").show();
+		$("#loader").hide();
+		$("#success").hide();
+		$("#failed").hide();
+		$("#submit-btn").show();
+		$(".modal-title").text('Please verify your data before submitting!');
+		
+		if($('#inputCpf').val() == "" | $('#inputName').val() == ""){
+			$("#form_cpf").addClass('has-error');
+		}else{
+			$("#form_cpf").removeClass("has-error");
+		}
+		
+		if(!$('.has-error').length){
+			//$('#myForm').submit();
+			
+			$('#myModal').modal();
+			
+			$('#_blood').html("Blood Group : <b>" + $('#blood').val() + "</b>");
+			$('#_dungaree').html("Dungaree Size : <b>" + $('#dungaree').val() + "</b>" );
+			$('#_cotton').html("Cotton Overall : <b>" + $('#cotton').val() + "</b>");
+			$('#_shoe').html("Safety Shoe Size : <b>" + $('#shoe').val() + "</b>");
+			
+		}
+		else{
+			alert('Invalid CPF Number');
+		}
+		
+
+	});
+	
+	
+	
+</script>
+
+</body>
+</html>
